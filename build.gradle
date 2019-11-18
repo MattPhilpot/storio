@@ -3,7 +3,7 @@ import org.gradle.internal.jvm.Jvm
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.kotlin_version = '1.2.71'   // https://github.com/JetBrains/kotlin/releases
+    ext.kotlin_version = '1.3.50'   // https://github.com/JetBrains/kotlin/releases
     repositories {
         jcenter()
         google()
@@ -12,7 +12,7 @@ buildscript {
 
     dependencies {
         // Android Gradle plugin
-        classpath 'com.android.tools.build:gradle:3.2.1'
+        classpath 'com.android.tools.build:gradle:3.5.1'
 
         // Jacoco Test Coverage Plugin
         // (addition to standard Jacoco plugin, allows us fail the build if coverage is not enough)
@@ -53,12 +53,12 @@ ext {
     minSdkVersion = 14
 }
 
-def supportLibsVersion = '28.0.0'
+def supportLibsVersion = '1.1.0'
 def daggerVersion = '2.18'
 
 ext.libraries = [
         // Core libraries
-        supportAnnotations                       : 'com.android.support:support-annotations:' + supportLibsVersion,
+        supportAnnotations                       : 'androidx.annotation:annotation:' + supportLibsVersion,
 
         rxJava2                                  : 'io.reactivex.rxjava2:rxjava:2.1.6',
         rxAndroid2                               : 'io.reactivex.rxjava2:rxandroid:2.0.1',
@@ -95,8 +95,8 @@ ext.libraries = [
         javaxAnnotationApi                       : 'javax.annotation:javax.annotation-api:1.2',
 
         butterKnife                              : "com.jakewharton:butterknife:7.0.1",
-        appCompat                                : "com.android.support:appcompat-v7:$supportLibsVersion",
-        recyclerView                             : "com.android.support:recyclerview-v7:$supportLibsVersion",
+        appCompat                                : "androidx.appcompat:appcompat:1.0.0",
+        recyclerView                             : "androidx.recyclerview:recyclerview:1.0.0",
         appCompatX                               : "androidx.appcompat:appcompat:1.0.0",
         recyclerViewX                            : "androidx.recyclerview:recyclerview:1.0.0",
 
@@ -147,8 +147,8 @@ subprojects {
             project.android.lintOptions.warningsAsErrors = true
 
             // StorIO should support Java 6
-            project.android.compileOptions.sourceCompatibility = JavaVersion.VERSION_1_6
-            project.android.compileOptions.targetCompatibility = JavaVersion.VERSION_1_6
+            project.android.compileOptions.sourceCompatibility = JavaVersion.VERSION_1_8
+            project.android.compileOptions.targetCompatibility = JavaVersion.VERSION_1_8
 
             project.android.testOptions.unitTests.all {
                 testLogging {
